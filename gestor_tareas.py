@@ -1,6 +1,5 @@
 class Tarea:
-   def __init__(self, id, titulo, descripcion ="", 
-      completada = False, prioridad="normal"):
+   def __init__(self, id, titulo, descripcion ="", completada = False, prioridad="normal"):
 
       self.id = id
       self.titulo = titulo
@@ -33,12 +32,12 @@ class GestorTareas:
       #Contador para asignar IDs unicos a las tareas
       self.contador_id = 0
 
-      # * Metodo añadir tarea
+   # * Metodo añadir tarea
    def agregar_tarea(self, titulo, descripcion="", prioridad="normal"):
       #Incrementamos el contador para obtener un nuevo ID unico
       self.contador_id += 1
 
-      #Creamos la nueva tarea con los parametros proporcionados
+      #Creamos la nueva tarea con los parametros proporcionados llamando la clase Tarea
       nueva_tarea = Tarea(self.contador_id, titulo, descripcion, False, prioridad)
 
       #Añadimos la tareaa a nuestra lista
@@ -46,3 +45,18 @@ class GestorTareas:
 
       #Retornamos la tarea creada para que pueda ser utilizada
       return nueva_tarea
+   
+   # * Metodo borrar tarea
+   def borrar_tarea(self, id_tarea):
+
+      # Buscamos la tarea por su ID
+      for tarea in self.tareas:
+
+         if tarea.id == id_tarea:
+
+            # Si la encontramos, la eliminamos de la lista
+            self.tareas.remove(tarea)
+            return "La tarea ha sido borrada con éxito"
+      
+      # Si no encontramos la tarea con ese ID
+      return "No se encontró ninguna tarea con ese ID"
